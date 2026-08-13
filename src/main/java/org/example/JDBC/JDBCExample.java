@@ -37,7 +37,7 @@ public class JDBCExample {
 
     private static String getEnv(String name, String defaultValue) {
         String value = System.getenv(name);
-        return (value == null || value.isBlank()) ? defaultValue : value;
+        return (value == null || value.isEmpty()) ? defaultValue : value;
     }
 
 
