@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS mytable (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 INSERT INTO mytable (name, email) VALUES
-  ('Aryan Kanani', 'aryankanani57@gmail.com'),
+  ('Aryan Kanani', 'aryan@example.com'),
   ('Robert', 'robert@example.com'),
   ('Alice', NULL);
 ```
@@ -83,7 +83,7 @@ DB_USERNAME=appuser DB_PASSWORD='your_password' \
 --- Row 1 ---
 id: 1
 name: Aryan Kanani
-email: aryankanani57@gmail.com
+email: aryan@example.com
 created_at: 2026-08-12 22:35:42.0
 --- Row 2 ---
 id: 2
