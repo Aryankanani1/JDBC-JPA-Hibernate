@@ -13,6 +13,9 @@ A learning project exploring database access in Java — starting with plain
 | Example | Class | What it shows |
 |---------|-------|---------------|
 | Plain JDBC | `org.example.JDBC.JDBCExample` | Connecting to MySQL, running a query, and printing any result set generically |
+| PreparedStatement | `org.example.JDBC.PreparedStatement.PreparedStatementExample` | Parameterized query using a `?` bind variable |
+| Batch insert | `org.example.JDBC.Batch_operation.BatchOperation` | Inserting multiple rows in one round-trip with `addBatch()` / `executeBatch()` |
+| Transaction | `org.example.JDBC.Transaction.Transaction` | Running two statements as one unit — commit on success, rollback on failure |
 
 The JDBC example demonstrates a few good practices:
 
@@ -104,12 +107,22 @@ created_at: 2026-08-12 22:35:42.0
 ├── DATABASE.md             # Connection details & DB admin reference
 ├── src/main/java/org/example/
 │   ├── App.java
-│   └── JDBC/JDBCExample.java
+│   └── JDBC/
+│       ├── JDBCExample.java
+│       ├── PreparedStatement/PreparedStatementExample.java
+│       ├── Batch_operation/BatchOperation.java
+│       └── Transaction/Transaction.java
 └── src/test/java/org/example/AppTest.java
 ```
+
+Each example has a `main` method — run any of them with the `-Dexec.mainClass`
+flag shown in the [Run](#run) section (swap in the class from the table above).
 
 ## Roadmap
 
 - [x] Plain JDBC example
+- [x] PreparedStatement example
+- [x] Batch insert example
+- [x] Transaction example
 - [ ] JPA (Jakarta Persistence) example
 - [ ] Hibernate ORM example
