@@ -12,6 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.release>21</maven.compiler.release>
   </properties>
 
   <dependencies>
@@ -21,10 +22,19 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>com.mysql</groupId>
       <artifactId>mysql-connector-j</artifactId>
       <version>8.4.0</version>
     </dependency>
+
+    <!-- Hibernate 6 ORM (bundles the Jakarta Persistence API) -->
+    <dependency>
+      <groupId>org.hibernate.orm</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>6.6.4.Final</version>
+    </dependency>
+
   </dependencies>
 </project>
