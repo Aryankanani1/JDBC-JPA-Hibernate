@@ -16,6 +16,7 @@ A learning project exploring database access in Java — starting with plain
 | PreparedStatement | `org.example.JDBC.PreparedStatement.PreparedStatementExample` | Parameterized query using a `?` bind variable |
 | Batch insert | `org.example.JDBC.Batch_operation.BatchOperation` | Inserting multiple rows in one round-trip with `addBatch()` / `executeBatch()` |
 | Transaction | `org.example.JDBC.Transaction.Transaction` | Running two statements as one unit — commit on success, rollback on failure |
+| JPA / Hibernate | `org.example.JPA.JPAExample` | Mapping a `User` entity with Hibernate 6, persisting and querying it via JPQL |
 
 The JDBC example demonstrates a few good practices:
 
@@ -103,17 +104,26 @@ created_at: 2026-08-12 22:35:42.0
 ## Project layout
 
 ```
-├── pom.xml                 # Maven build + mysql-connector-j dependency
+├── pom.xml                 # Maven build + mysql-connector-j & hibernate-core deps
 ├── DATABASE.md             # Connection details & DB admin reference
-├── src/main/java/org/example/
-│   ├── App.java
-│   └── JDBC/
-│       ├── JDBCExample.java
-│       ├── PreparedStatement/PreparedStatementExample.java
-│       ├── Batch_operation/BatchOperation.java
-│       └── Transaction/Transaction.java
+├── src/main/
+│   ├── java/org/example/
+│   │   ├── App.java
+│   │   ├── JDBC/
+│   │   │   ├── JDBCExample.java
+│   │   │   ├── PreparedStatement/PreparedStatementExample.java
+│   │   │   ├── Batch_operation/BatchOperation.java
+│   │   │   └── Transaction/Transaction.java
+│   │   └── JPA/
+│   │       ├── User.java              # @Entity mapped to the users table
+│   │       └── JPAExample.java        # persist + JPQL query
+│   └── resources/META-INF/persistence.xml
 └── src/test/java/org/example/AppTest.java
 ```
+
+> **Note:** the JPA example uses `hibernate.hbm2ddl.auto=update`, which issues
+> DDL (CREATE/ALTER TABLE). Run it as a user with schema privileges (e.g. `root`),
+> not the CRUD-only `appuser`.
 
 Each example has a `main` method — run any of them with the `-Dexec.mainClass`
 flag shown in the [Run](#run) section (swap in the class from the table above).
@@ -124,5 +134,5 @@ flag shown in the [Run](#run) section (swap in the class from the table above).
 - [x] PreparedStatement example
 - [x] Batch insert example
 - [x] Transaction example
-- [ ] JPA (Jakarta Persistence) example
-- [ ] Hibernate ORM example
+- [x] JPA / Hibernate example
+- [ ] Spring Data JPA example
