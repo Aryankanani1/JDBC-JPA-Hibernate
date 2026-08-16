@@ -9,6 +9,10 @@
         <class>org.example.JPA.User</class>
         <class>org.example.JPA.CRUD_operations.User</class>
         <class>org.example.JPA.Important_Annotation_For_Entity.User</class>
+        <class>org.example.JPA.LAZY_AND_EAGR_FETCHING.LAZY.Department</class>
+        <class>org.example.JPA.LAZY_AND_EAGR_FETCHING.LAZY.Employee</class>
+        <class>org.example.JPA.LAZY_AND_EAGR_FETCHING.EAGER.Department</class>
+        <class>org.example.JPA.LAZY_AND_EAGR_FETCHING.EAGER.Employee</class>
         <!-- Only manage the classes listed above (ignore WIP mapping examples). -->
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
