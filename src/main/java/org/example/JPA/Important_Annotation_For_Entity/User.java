@@ -4,8 +4,9 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "users")
+// Distinct entity name + table so this demo entity doesn't clash with org.example.JPA.User.
+@Entity(name = "AnnotatedUser")
+@Table(name = "annotated_users")
 public class User {
 
     @Id
@@ -24,6 +25,13 @@ public class User {
     @Transient
     private String temporaryData;
 
+    public User() {
+    }
+
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 
     public Long getId() {
         return id;

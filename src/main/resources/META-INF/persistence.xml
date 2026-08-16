@@ -8,6 +8,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>org.example.JPA.User</class>
         <class>org.example.JPA.CRUD_operations.User</class>
+        <class>org.example.JPA.Important_Annotation_For_Entity.User</class>
         <!-- Only manage the classes listed above (ignore WIP mapping examples). -->
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
