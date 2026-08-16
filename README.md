@@ -6,9 +6,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A learning project exploring database access in Java — starting with plain
-**JDBC** and (planned) growing into **JPA** and **Hibernate** examples.
+**JDBC** and growing into **JPA** and **Hibernate** examples.
 
 ## Current contents
+
+### JDBC
 
 | Example | Class | What it shows |
 |---------|-------|---------------|
@@ -16,7 +18,19 @@ A learning project exploring database access in Java — starting with plain
 | PreparedStatement | `org.example.JDBC.PreparedStatement.PreparedStatementExample` | Parameterized query using a `?` bind variable |
 | Batch insert | `org.example.JDBC.Batch_operation.BatchOperation` | Inserting multiple rows in one round-trip with `addBatch()` / `executeBatch()` |
 | Transaction | `org.example.JDBC.Transaction.Transaction` | Running two statements as one unit — commit on success, rollback on failure |
-| JPA / Hibernate | `org.example.JPA.JPAExample` | Mapping a `User` entity with Hibernate 6, persisting and querying it via JPQL |
+
+### JPA / Hibernate
+
+| Example | Class | What it shows |
+|---------|-------|---------------|
+| Basics | `org.example.JPA.JPAExample` | Mapping a `User` entity with Hibernate 6, persisting and querying it via JPQL |
+| CRUD | `org.example.JPA.CRUD_operations.UserService` | Full create / read / update / delete cycle with `EntityManager` |
+| Entity annotations | `org.example.JPA.Important_Annotation_For_Entity.User` | `@Column`, `@Temporal`, `@Enumerated`, `@Lob`, `@Transient` on one entity |
+| Pagination (JPQL) | `org.example.JPA.Pagination.Using_JPQL.Pagination` | Paging with `setFirstResult` (offset) + `setMaxResults` (limit) |
+| Pagination (Criteria) | `org.example.JPA.Pagination.Using_criteria_API.CriteriaExample` | Same paging built type-safely with the Criteria API |
+| Lazy fetching | `org.example.JPA.LAZY_AND_EAGR_FETCHING.LAZY.FetchingDemo` | `FetchType.LAZY` → `LazyInitializationException` after the `EntityManager` closes |
+| Eager fetching | `org.example.JPA.LAZY_AND_EAGR_FETCHING.EAGER.FetchingDemo` | `FetchType.EAGER` → the collection is loaded upfront and readable after close |
+| Relationship mappings | `org.example.JPA.JPA_mapping.*` | `@OneToOne`, `@OneToMany`, `@ManyToOne`, `@ManyToMany` entity pairs |
 
 The JDBC example demonstrates a few good practices:
 
@@ -115,14 +129,19 @@ created_at: 2026-08-12 22:35:42.0
 │   │   │   ├── Batch_operation/BatchOperation.java
 │   │   │   └── Transaction/Transaction.java
 │   │   └── JPA/
-│   │       ├── User.java              # @Entity mapped to the users table
-│   │       └── JPAExample.java        # persist + JPQL query
+│   │       ├── User.java                      # @Entity mapped to the users table
+│   │       ├── JPAExample.java                # persist + JPQL query
+│   │       ├── CRUD_operations/               # create / read / update / delete
+│   │       ├── Important_Annotation_For_Entity/  # column & mapping annotations
+│   │       ├── Pagination/                    # JPQL + Criteria API paging
+│   │       ├── LAZY_AND_EAGR_FETCHING/        # LAZY vs EAGER fetch demos
+│   │       └── JPA_mapping/                   # one-to-one/many, many-to-one/many
 │   └── resources/META-INF/persistence.xml
 └── src/test/java/org/example/AppTest.java
 ```
 
-> **Note:** the JPA example uses `hibernate.hbm2ddl.auto=update`, which issues
-> DDL (CREATE/ALTER TABLE). Run it as a user with schema privileges (e.g. `root`),
+> **Note:** the JPA examples use `hibernate.hbm2ddl.auto=update`, which issues
+> DDL (CREATE/ALTER TABLE). Run them as a user with schema privileges (e.g. `root`),
 > not the CRUD-only `appuser`.
 
 Each example has a `main` method — run any of them with the `-Dexec.mainClass`
@@ -134,5 +153,11 @@ flag shown in the [Run](#run) section (swap in the class from the table above).
 - [x] PreparedStatement example
 - [x] Batch insert example
 - [x] Transaction example
-- [x] JPA / Hibernate example
+- [x] JPA / Hibernate basics
+- [x] JPA CRUD operations
+- [x] Entity annotations
+- [x] Pagination (JPQL + Criteria API)
+- [x] Lazy vs eager fetching
+- [x] Relationship mappings
+- [ ] Named queries
 - [ ] Spring Data JPA example
