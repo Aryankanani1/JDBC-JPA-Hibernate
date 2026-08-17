@@ -32,6 +32,21 @@ A learning project exploring database access in Java — starting with plain
 | Eager fetching | `org.example.JPA.LAZY_AND_EAGR_FETCHING.EAGER.FetchingDemo` | `FetchType.EAGER` → the collection is loaded upfront and readable after close |
 | Relationship mappings | `org.example.JPA.JPA_mapping.*` | `@OneToOne`, `@OneToMany`, `@ManyToOne`, `@ManyToMany` entity pairs |
 
+### Hibernate (native API)
+
+These use Hibernate's own `SessionFactory` / `Session` API bootstrapped from
+[`hibernate.cfg.xml`](src/main/resources/hibernate.cfg.xml) (separate `hibernateExample`
+schema, auto-created on first run). Credentials are still injected from
+`DB_USERNAME` / `DB_PASSWORD`, never hardcoded.
+
+| Example | Class | What it shows |
+|---------|-------|---------------|
+| Session CRUD | `org.example.Hibernate.HibernateExample.App` | Create / read / update / delete with `SessionFactory`, `persist`/`get`/`remove` |
+| get() vs load() | `org.example.Hibernate.Get_and_Load.HibernateExample` | `get()` (immediate SELECT) vs `load()`/`getReference()` (lazy proxy) |
+| Inheritance — single table | `org.example.Hibernate.Inheritance_Mapping.single_table_inheritance.SingleTableDemo` | `SINGLE_TABLE` — one table + discriminator column |
+| Inheritance — joined | `org.example.Hibernate.Inheritance_Mapping.table_per_class_hierarchy.JoinedDemo` | `JOINED` — base table + a joined table per subclass |
+| Inheritance — table per class | `org.example.Hibernate.Inheritance_Mapping.table_per_subClass.TablePerClassDemo` | `TABLE_PER_CLASS` — a standalone table per concrete subclass |
+
 The JDBC example demonstrates a few good practices:
 
 - **try-with-resources** so `Connection`, `PreparedStatement`, and `ResultSet` always close.
@@ -128,21 +143,28 @@ created_at: 2026-08-12 22:35:42.0
 │   │   │   ├── PreparedStatement/PreparedStatementExample.java
 │   │   │   ├── Batch_operation/BatchOperation.java
 │   │   │   └── Transaction/Transaction.java
-│   │   └── JPA/
-│   │       ├── User.java                      # @Entity mapped to the users table
-│   │       ├── JPAExample.java                # persist + JPQL query
-│   │       ├── CRUD_operations/               # create / read / update / delete
-│   │       ├── Important_Annotation_For_Entity/  # column & mapping annotations
-│   │       ├── Pagination/                    # JPQL + Criteria API paging
-│   │       ├── LAZY_AND_EAGR_FETCHING/        # LAZY vs EAGER fetch demos
-│   │       └── JPA_mapping/                   # one-to-one/many, many-to-one/many
-│   └── resources/META-INF/persistence.xml
+│   │   ├── JPA/
+│   │   │   ├── User.java                      # @Entity mapped to the users table
+│   │   │   ├── JPAExample.java                # persist + JPQL query
+│   │   │   ├── CRUD_operations/               # create / read / update / delete
+│   │   │   ├── Important_Annotation_For_Entity/  # column & mapping annotations
+│   │   │   ├── Pagination/                    # JPQL + Criteria API paging
+│   │   │   ├── LAZY_AND_EAGR_FETCHING/        # LAZY vs EAGER fetch demos
+│   │   │   └── JPA_mapping/                   # one-to-one/many, many-to-one/many
+│   │   └── Hibernate/                         # native SessionFactory API
+│   │       ├── HibernateExample/              # Session CRUD
+│   │       ├── Get_and_Load/                  # get() vs load()
+│   │       └── Inheritance_Mapping/           # single-table / joined / table-per-class
+│   └── resources/
+│       ├── META-INF/persistence.xml          # JPA (EntityManager) config
+│       └── hibernate.cfg.xml                  # Hibernate (SessionFactory) config
 └── src/test/java/org/example/AppTest.java
 ```
 
-> **Note:** the JPA examples use `hibernate.hbm2ddl.auto=update`, which issues
-> DDL (CREATE/ALTER TABLE). Run them as a user with schema privileges (e.g. `root`),
-> not the CRUD-only `appuser`.
+> **Note:** the JPA and Hibernate examples use `hibernate.hbm2ddl.auto=update`,
+> which issues DDL (CREATE/ALTER TABLE). Run them as a user with schema privileges
+> (e.g. `root`), not the CRUD-only `appuser`. The Hibernate examples also create
+> their own `hibernateExample` schema automatically on first run.
 
 Each example has a `main` method — run any of them with the `-Dexec.mainClass`
 flag shown in the [Run](#run) section (swap in the class from the table above).
@@ -159,5 +181,8 @@ flag shown in the [Run](#run) section (swap in the class from the table above).
 - [x] Pagination (JPQL + Criteria API)
 - [x] Lazy vs eager fetching
 - [x] Relationship mappings
+- [x] Native Hibernate Session CRUD
+- [x] Hibernate get() vs load()
+- [x] Hibernate inheritance mapping (single-table / joined / table-per-class)
 - [ ] Named queries
 - [ ] Spring Data JPA example
