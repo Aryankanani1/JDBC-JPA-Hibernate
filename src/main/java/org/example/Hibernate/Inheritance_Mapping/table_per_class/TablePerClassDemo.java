@@ -1,14 +1,14 @@
-package org.example.Hibernate.Inheritance_Mapping.table_per_class_hierarchy;
+package org.example.Hibernate.Inheritance_Mapping.table_per_class;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 /**
- * JOINED strategy: rows are split across jt_book + jt_fiction_book /
- * jt_non_fiction_book; a polymorphic query joins them back together.
+ * TABLE_PER_CLASS strategy: each concrete class has its own table
+ * (tpc_fiction_book, tpc_non_fiction_book); a polymorphic query UNIONs them.
  */
-public class JoinedDemo {
+public class TablePerClassDemo {
     public static void main(String[] args) {
         Configuration configuration = new Configuration()
                 .configure("hibernate.cfg.xml")

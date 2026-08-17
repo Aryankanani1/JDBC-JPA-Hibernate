@@ -1,10 +1,10 @@
-package org.example.Hibernate.Inheritance_Mapping.table_per_class_hierarchy;
+package org.example.Hibernate.Inheritance_Mapping.table_per_class;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "jt_fiction_book")
+@Table(name = "tpc_fiction_book")
 public class FictionBook extends Book {
 
     private String genre;

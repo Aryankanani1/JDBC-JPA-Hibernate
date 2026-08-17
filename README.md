@@ -44,8 +44,8 @@ schema, auto-created on first run). Credentials are still injected from
 | Session CRUD | `org.example.Hibernate.HibernateExample.App` | Create / read / update / delete with `SessionFactory`, `persist`/`get`/`remove` |
 | get() vs load() | `org.example.Hibernate.Get_and_Load.HibernateExample` | `get()` (immediate SELECT) vs `load()`/`getReference()` (lazy proxy) |
 | Inheritance — single table | `org.example.Hibernate.Inheritance_Mapping.single_table_inheritance.SingleTableDemo` | `SINGLE_TABLE` — one table + discriminator column |
-| Inheritance — joined | `org.example.Hibernate.Inheritance_Mapping.table_per_class_hierarchy.JoinedDemo` | `JOINED` — base table + a joined table per subclass |
-| Inheritance — table per class | `org.example.Hibernate.Inheritance_Mapping.table_per_subClass.TablePerClassDemo` | `TABLE_PER_CLASS` — a standalone table per concrete subclass |
+| Inheritance — joined | `org.example.Hibernate.Inheritance_Mapping.joined.JoinedDemo` | `JOINED` — base table + a joined table per subclass |
+| Inheritance — table per class | `org.example.Hibernate.Inheritance_Mapping.table_per_class.TablePerClassDemo` | `TABLE_PER_CLASS` — a standalone table per concrete subclass |
 
 The JDBC example demonstrates a few good practices:
 

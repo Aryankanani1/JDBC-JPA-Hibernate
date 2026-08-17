@@ -1,4 +1,4 @@
-package org.example.Hibernate.Inheritance_Mapping.table_per_class_hierarchy;
+package org.example.Hibernate.Inheritance_Mapping.joined;
 
 import jakarta.persistence.*;
 
